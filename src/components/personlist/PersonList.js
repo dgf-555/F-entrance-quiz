@@ -14,27 +14,30 @@ class PersonList extends React.Component {
         };
       }
       componentDidMount() {
+          this.update();
+      }
+      update(){
         async function fetchData(url) {
-          const response = await fetch(url, {
-            method: 'GET',
-            headers: myHeaders,
-            mode: 'cors',
-            //转字符串格式
+            const response = await fetch(url, {
+              method: 'GET',
+              headers: myHeaders,
+              mode: 'cors',
+              //转字符串格式
+            });
+            const result = await response.json();
+            console.log(result);
+            return result;
+          }
+          //修改请求头
+          let myHeaders = new Headers({
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'text/plain',
           });
-          const result = await response.json();
-          console.log(result);
-          return result;
-        }
-        //修改请求头
-        let myHeaders = new Headers({
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'text/plain',
-        });
-        const URL = 'http://localhost:8080/person/list';
-        fetchData(URL)
-          .then((result) => {this.setState({ personlist: result });
-        console.log(this.state.personlist)})
-          .catch((error) => console.log(error));
+          const URL = 'http://localhost:8080/person/list';
+          fetchData(URL)
+            .then((result) => {this.setState({ personlist: result });
+          console.log(this.state.personlist)})
+            .catch((error) => console.log(error));
       }
 
       handleclick = () => {
@@ -86,6 +89,7 @@ class PersonList extends React.Component {
         this.setState({
             formvisible: false,
           })
+        this.update();
       }
 
   render() {
