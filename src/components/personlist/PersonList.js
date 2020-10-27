@@ -41,6 +41,12 @@ class PersonList extends React.Component {
           })
       }
 
+      handleclickcancle = () => {
+        this.setState({
+            formvisible: false,
+          })
+      }
+
       handleChange=(event)=>{
         this.setState({
           [event.target.name]:event.target.value,
@@ -105,11 +111,12 @@ class PersonList extends React.Component {
           <input 
           className="submit" 
           type="submit" 
-          value="Submit"
+          value="确认添加"
           disabled= {
             this.state.name===""
           }
-          />   
+          />
+          <button onClick={this.handleclickcancle}>取消</button>
         </form>}
         </div>
     );
