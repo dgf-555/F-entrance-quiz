@@ -1,3 +1,9 @@
-.person{
+.personlist{
+
+    height: 38px;
     display: flex;
 }
+.addperson{
+    margin-top: 20px;
+}
+

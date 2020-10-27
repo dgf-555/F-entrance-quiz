@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Button} from 'antd';
 import './PersonList.css';
 import Split from '../split/Split';
+import Person from './Person'
 
 class PersonList extends React.Component {
     constructor(props) {
@@ -91,14 +92,15 @@ class PersonList extends React.Component {
     return (
         <div>
         <Split personlist={this.state.personlist} />
-        <div className="person">
+        <h3>学员列表</h3>
+        <div className="personlist">
           {this.state.personlist.map((person) => (
-            <div key="person.id">
-              <p>{person.id} {person.name}</p>
+            <div className="person" key="person.id">
+              <Person person={person}/>
             </div>
           ))}
         </div>
-        <Button classname="addperson" onClick={this.handleclick}>+添加人物</Button>
+        <Button className="addperson" onClick={this.handleclick}>+添加学员</Button>
 
         {this.state.formvisible && 
         <form className='from' onSubmit={this.handlesubmit}>
