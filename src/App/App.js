@@ -6,7 +6,7 @@ class App extends Component {
   
   render() {
     return (
-      <div data-testid="app" className="App">
+      <div data-testid="app" className="App">        
         <PersonList />
       </div>
     );

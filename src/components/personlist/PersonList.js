@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {Button} from 'antd'
+import {Button} from 'antd';
 import './PersonList.css';
+import Split from '../split/Split';
 
 class PersonList extends React.Component {
     constructor(props) {
@@ -89,6 +90,7 @@ class PersonList extends React.Component {
   render() {
     return (
         <div>
+        <Split personlist={this.state.personlist} />
         <div className="person">
           {this.state.personlist.map((person) => (
             <div key="person.id">

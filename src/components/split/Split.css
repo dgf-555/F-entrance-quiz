@@ -1,0 +1,12 @@
+.splitgroup{
+    display: flex;
+}
+
+.splitbutton{
+    margin-top: 5px;
+    margin-left: 800px;
+    color: white;
+    background-color: #ea5455;
+    height: 35px;
+    width: 80px;
+}
