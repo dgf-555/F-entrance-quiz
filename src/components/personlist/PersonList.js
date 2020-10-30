@@ -8,8 +8,11 @@ class PersonList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+          // TODO GTB-知识点: - 可以直接用[]
           personlist: new Array(),
+          // TODO GTB-工程实践: - 命名不够表意，建议命名更符合业务或功能
           formvisible: false,
+          // TODO GTB-知识点: - name不需要存储到state
           name: '',
         };
       }
@@ -17,6 +20,7 @@ class PersonList extends React.Component {
           this.update();
       }
       update(){
+        // TODO GTB-工程实践: * 建议把数据请求提取到单独的service
         async function fetchData(url) {
             const response = await fetch(url, {
               method: 'GET',
@@ -30,16 +34,20 @@ class PersonList extends React.Component {
           }
           //修改请求头
           let myHeaders = new Headers({
+            // TODO GTB-知识点: - 需要定义在后端
             'Access-Control-Allow-Origin': '*',
+            // TODO GTB-知识点: - content type应该为application/json
             'Content-Type': 'text/plain',
           });
           const URL = 'http://localhost:8080/person/list';
           fetchData(URL)
             .then((result) => {this.setState({ personlist: result });
+            // TODO GTB-工程实践: - 不要提交console.log
           console.log(this.state.personlist)})
             .catch((error) => console.log(error));
       }
 
+      // TODO GTB-工程实践: - 和handleclickcancle有重复
       handleclick = () => {
         this.setState({
             formvisible: true,
@@ -60,6 +68,7 @@ class PersonList extends React.Component {
 
       handlesubmit =(event)=>{
         event.preventDefault();
+        // TODO GTB-工程实践: * 不要提交注释代码
           // On submit of the form, send a POST request with the data to the server.
         const URL = 'http://localhost:8080/person/list';
         let myHeaders = new Headers({
@@ -94,11 +103,14 @@ class PersonList extends React.Component {
 
   render() {
     return (
+      // TODO GTB-知识点: * 没有使用语义标签
         <div>
+          {/*TODO GTB-工程实践: - Split命名不合理*/}
         <Split personlist={this.state.personlist} />
         <h3>学员列表</h3>
         <div className="personlist">
           {this.state.personlist.map((person) => (
+            // TODO GTB-知识点: - key应该用{}
             <div className="person" key="person.id">
               <Person person={person}/>
             </div>
